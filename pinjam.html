@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Form Peminjaman</title>
+
+  <!-- BOOTSTRAP OFFLINE -->
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+
+  <style>
+    body{
+      background:#f4efe9;
+      font-family: Segoe UI, sans-serif;
+    }
+    .card{
+      border-radius:16px;
+    }
+    .btn-main{
+      background:#6f4e37;
+      color:#fff;
+    }
+    .btn-main:hover{
+      background:#5c402f;
+      color:#fff;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand navbar-dark sticky-top" style="background:#6f4e37">
+  <div class="container-fluid">
+    <span class="navbar-brand">📖 Peminjaman</span>
+  </div>
+</nav>
+
+<div class="container py-4">
+
+  <div class="card p-3">
+    <h6 class="fw-bold mb-3">Form Peminjaman Buku</h6>
+
+    <!-- JUDUL -->
+    <div class="mb-2">
+      <label class="form-label">Judul Buku</label>
+      <input id="judul" class="form-control" readonly>
+    </div>
+
+    <!-- NAMA -->
+    <div class="mb-2">
+      <label class="form-label">Nama Peminjam</label>
+      <input id="nama" class="form-control">
+    </div>
+
+    <!-- TANGGAL PINJAM -->
+    <div class="mb-2">
+      <label class="form-label">Tanggal Pinjam</label>
+      <input id="tglPinjam" type="date" class="form-control">
+    </div>
+
+    <!-- TANGGAL KEMBALI -->
+    <div class="mb-3">
+      <label class="form-label">Tanggal Kembali</label>
+      <input id="tglKembali" type="date" class="form-control">
+    </div>
+
+    <!-- ALERT -->
+    <div id="alertKosong" class="alert alert-danger d-none">
+      ⚠️ Semua data wajib diisi sebelum menyimpan!
+    </div>
+
+    <button id="btnSimpan" class="btn btn-main w-100">
+      Simpan Peminjaman
+    </button>
+  </div>
+
+</div>
+
+<script>
+  // isi judul otomatis
+  document.getElementById("judul").value =
+    localStorage.getItem("judulBuku") || "";
+
+  // tombol simpan
+  document.getElementById("btnSimpan").addEventListener("click", function () {
+
+    const judul   = document.getElementById("judul").value;
+    const nama    = document.getElementById("nama").value;
+    const pinjam  = document.getElementById("tglPinjam").value;
+    const kembali = document.getElementById("tglKembali").value;
+
+    // VALIDASI
+    if (!judul || !nama || !pinjam || !kembali) {
+      document.getElementById("alertKosong").classList.remove("d-none");
+      return;
+    }
+
+    document.getElementById("alertKosong").classList.add("d-none");
+
+    // simpan transaksi
+    let transaksi = {
+      judul: judul,
+      nama: nama,
+      pinjam: pinjam,
+      kembali: kembali
+    };
+
+    let data = JSON.parse(localStorage.getItem("transaksi")) || [];
+    data.push(transaksi);
+    localStorage.setItem("transaksi", JSON.stringify(data));
+
+    // pindah halaman
+    window.location.href = "transaksi.html";
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Transaksi</title>
+
+<!-- BOOTSTRAP OFFLINE -->
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+
+<style>
+body{
+  background:#f4efe9;
+  font-family: Segoe UI, sans-serif;
+}
+.card{
+  border-radius:16px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand navbar-dark sticky-top" style="background:#6f4e37">
+  <div class="container-fluid">
+    <span class="navbar-brand">🔄 Transaksi</span>
+    <div class="navbar-nav ms-auto">
+      <a class="nav-link" href="beranda.html">Beranda</a>
+      <a class="nav-link active" href="transaksi.html">Transaksi</a>
+      <a class="nav-link" href="profil.html">Profil</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container py-3">
+
+  <!-- FILTER TANGGAL -->
+  <div class="card mb-3">
+    <div class="card-body">
+      <label class="fw-semibold mb-1">Filter Tanggal Peminjaman</label>
+      <input type="date" id="filterTanggal" class="form-control"
+             onchange="filterTransaksi()">
+      <small class="text-muted">
+        Kosongkan untuk melihat semua transaksi
+      </small>
+    </div>
+  </div>
+
+  <!-- LIST TRANSAKSI -->
+  <div id="listTransaksi"></div>
+
+</div>
+
+<script>
+// Ambil data transaksi
+let data = JSON.parse(localStorage.getItem("transaksi")) || [];
+const list = document.getElementById("listTransaksi");
+
+// Tampilkan semua saat pertama dibuka
+tampilkanTransaksi(data);
+
+// Fungsi tampilkan transaksi
+function tampilkanTransaksi(dataFilter){
+  list.innerHTML = "";
+
+  if(dataFilter.length === 0){
+    list.innerHTML = "<p class='text-muted'>Tidak ada transaksi</p>";
+    return;
+  }
+
+  dataFilter.forEach(t => {
+    list.innerHTML += `
+      <div class="card mb-2">
+        <div class="card-body">
+          <strong>${t.judul}</strong><br>
+          <small>Peminjam: ${t.nama}</small><br>
+          <small>
+            Pinjam: ${formatTanggal(t.pinjam)} <br>
+            Kembali: ${formatTanggal(t.kembali)}
+          </small>
+        </div>
+      </div>
+    `;
+  });
+}
+
+// Filter berdasarkan tanggal pinjam
+function filterTransaksi(){
+  const tanggal = document.getElementById("filterTanggal").value;
+
+  if(!tanggal){
+    tampilkanTransaksi(data);
+    return;
+  }
+
+  const hasil = data.filter(t => t.pinjam === tanggal);
+  tampilkanTransaksi(hasil);
+}
+
+// Format tanggal jadi lebih enak dibaca
+function formatTanggal(tgl){
+  if(!tgl) return "-";
+  const d = new Date(tgl);
+  return d.toLocaleDateString("id-ID", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric"
+  });
+}
+</script>
+
+<!-- BOOTSTRAP OFFLINE JS -->
+<script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

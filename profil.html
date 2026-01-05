@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Profil</title>
+
+<!-- BOOTSTRAP OFFLINE / CDN (sesuai punyamu) -->
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+
+<style>
+body{
+  background:#f4efe9;
+  font-family: Segoe UI, sans-serif;
+}
+.card{
+  border-radius:16px;
+}
+.btn-main{
+  background:#6f4e37;
+  color:#fff;
+  border-radius:12px;
+}
+.profile-img{
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  object-fit:cover;
+  border:4px solid #6f4e37;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand navbar-dark sticky-top" style="background:#6f4e37">
+  <div class="container-fluid">
+    <span class="navbar-brand">📚 Perpustakaan</span>
+    <div class="navbar-nav ms-auto">
+      <a class="nav-link" href="beranda.html">Beranda</a>
+      <a class="nav-link" href="transaksi.html">Transaksi</a>
+      <a class="nav-link active" href="profil.html">Profil</a>
+    </div>
+  </div>
+</nav>
+
+<!-- KONTEN -->
+<div class="container py-4 text-center">
+
+  <!-- FOTO PROFIL -->
+  <img id="profilePhoto" src="img/profil.jpeg" class="profile-img mb-3">
+
+  <div>
+    <label class="btn btn-outline-secondary btn-sm">
+      Ganti Foto
+      <input type="file" accept="image/*" hidden id="inputFoto">
+    </label>
+  </div>
+
+  <!-- DATA PROFIL -->
+  <div class="card mt-4 text-start">
+    <div class="card-body">
+      <p><strong>Nama:</strong> Nur Alifia</p>
+      <p><strong>Nim:</strong> 21011701252</p>
+      <p><strong>Prodi:</strong> Sistem Informasi</p>
+    </div>
+  </div>
+
+  <!-- LOGOUT -->
+  <button id="btnLogout" class="btn btn-danger w-100 mt-3">
+    Logout
+  </button>
+
+</div>
+
+<!-- JAVASCRIPT -->
+<script>
+// GANTI FOTO PROFIL
+const inputFoto = document.getElementById("inputFoto");
+const fotoProfil = document.getElementById("profilePhoto");
+
+inputFoto.addEventListener("change", function(){
+  if(this.files && this.files[0]){
+    const reader = new FileReader();
+    reader.onload = function(e){
+      localStorage.setItem("profilePhoto", e.target.result);
+      fotoProfil.src = e.target.result;
+    };
+    reader.readAsDataURL(this.files[0]);
+  }
+});
+
+// LOAD FOTO SAAT HALAMAN DIBUKA
+const fotoTersimpan = localStorage.getItem("profilePhoto");
+if(fotoTersimpan){
+  fotoProfil.src = fotoTersimpan;
+}
+
+// LOGOUT DENGAN PERINGATAN
+document.getElementById("btnLogout").addEventListener("click", function(){
+  const yakin = confirm("Apakah Anda yakin ingin logout?");
+  if(yakin){
+    localStorage.removeItem("login");
+    window.location.href = "login.html";
+  }
+});
+</script>
+
+<!-- BOOTSTRAP JS OFFLINE -->
+<script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

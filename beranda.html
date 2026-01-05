@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beranda Perpustakaan</title>
+
+<!-- BOOTSTRAP OFFLINE -->
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+
+<style>
+body{
+  background:#f4efe9;
+  font-family:"Segoe UI", sans-serif;
+}
+
+/* NAVBAR */
+.navbar{
+  background:#6f4e37 !important;
+}
+.navbar-brand{
+  font-weight:600;
+}
+
+/* CAROUSEL */
+.carousel-item img{
+  height:200px;
+  object-fit:cover;
+  border-radius:14px;
+}
+
+/* CARD */
+.card{
+  border-radius:16px;
+}
+.card-buku{
+  border:none;
+  cursor:pointer;
+  overflow:hidden;
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.card-buku:hover{
+  box-shadow:0 8px 20px rgba(0,0,0,.12);
+}
+.card-buku:active{
+  transform:scale(0.97);
+}
+.card-img-top{
+  height:180px;
+  object-fit:cover;
+}
+.card-title{
+  font-size:16px;
+  font-weight:600;
+}
+.card-text{
+  font-size:13px;
+  color:#555;
+}
+
+/* BADGE */
+.badge{
+  font-size:11px;
+  border-radius:6px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand navbar-dark sticky-top">
+  <div class="container-fluid">
+    <span class="navbar-brand"> Perpustakaan</span>
+    <div class="navbar-nav ms-auto">
+      <a class="nav-link active" href="#">Beranda</a>
+      <a class="nav-link" href="transaksi.html">Transaksi</a>
+      <a class="nav-link" href="profil.html">Profil</a>
+    </div>
+  </div>
+</nav>
+
+<!-- CAROUSEL -->
+<div id="carouselExampleDark" class="carousel carousel-dark slide m-3" data-bs-ride="carousel">
+
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"></button>
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"></button>
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"></button>
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="3"></button>
+  </div>
+
+  <div class="carousel-inner rounded-4">
+    <div class="carousel-item active">
+      <img src="img/gambar1.jpg" class="d-block w-100">
+    </div>
+    <div class="carousel-item">
+      <img src="img/gambar4.jpg" class="d-block w-100">
+    </div>
+    <div class="carousel-item">
+      <img src="img/gambar3.jpg" class="d-block w-100">
+    </div>
+    <div class="carousel-item">
+      <img src="img/gambar2.jpg" class="d-block w-100">
+    </div>
+  </div>
+
+  <button class="carousel-control-prev" type="button"
+    data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+
+  <button class="carousel-control-next" type="button"
+    data-bs-target="#carouselExampleDark" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </button>
+</div>
+
+<!-- KOLEKSI BUKU (4 PILIHAN) -->
+<div class="container pb-4">
+
+<h5 class="fw-bold mb-3">📖 Koleksi Buku</h5>
+
+<div class="row row-cols-1 row-cols-md-2 g-4">
+
+  <!-- BUKU 1 -->
+  <div class="col">
+    <div class="card card-buku h-100"
+      onclick="pilihBuku('Laskar Pelangi','Andrea Hirata','Novel')">
+      <img src="img/Laskar Pelangi.jpg" class="card-img-top">
+      <div class="card-body">
+        <h5 class="card-title">Laskar Pelangi</h5>
+        <p class="card-text">
+          Andrea Hirata<br>
+          <span class="badge bg-primary">Novel</span>
+          <span class="badge bg-success">Tersedia</span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- BUKU 2 -->
+  <div class="col">
+    <div class="card card-buku h-100"
+      onclick="pilihBuku('Bumi Manusia','Pramoedya A. Toer','Sastra')">
+      <img src="img/bumi manusia.jpg" class="card-img-top">
+      <div class="card-body">
+        <h5 class="card-title">Bumi Manusia</h5>
+        <p class="card-text">
+          Pramoedya A. Toer<br>
+          <span class="badge bg-warning text-dark">Sastra</span>
+          <span class="badge bg-success">Tersedia</span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- BUKU 3 -->
+  <div class="col">
+    <div class="card card-buku h-100"
+      onclick="pilihBuku('Negeri 5 Menara','Ahmad Fuadi','Motivasi')">
+      <img src="img/Negeri 5 Menara    🇮🇩.jpg" class="card-img-top">
+      <div class="card-body">
+        <h5 class="card-title">Negeri 5 Menara</h5>
+        <p class="card-text">
+          Ahmad Fuadi<br>
+          <span class="badge bg-info text-dark">Motivasi</span>
+          <span class="badge bg-success">Tersedia</span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- BUKU 4 -->
+  <div class="col">
+    <div class="card card-buku h-100"
+      onclick="pilihBuku('Sejarah Indonesia','M.C. Ricklefs','Sejarah')">
+      <img src="img/Sejarah Indonesia.jpg" class="card-img-top">
+      <div class="card-body">
+        <h5 class="card-title">Sejarah Indonesia</h5>
+        <p class="card-text">
+          M.C. Ricklefs<br>
+          <span class="badge bg-danger">Sejarah</span>
+          <span class="badge bg-success">Tersedia</span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- PANDUAN PENGGUNAAN -->
+<div class="container pb-5 mt-4">
+  <h5 class="fw-bold mb-3">📌 Langkah Penggunaan Aplikasi</h5>
+
+  <div class="row row-cols-1 row-cols-md-3 g-3">
+
+    <!-- STEP 1 -->
+    <div class="col">
+      <div class="card h-100 text-center">
+        <div class="card-body">
+          <div class="fs-1 mb-2">📝</div>
+          <h6 class="fw-bold">Daftar Akun</h6>
+          <p class="text-muted small mb-0">
+            Jika belum memiliki akun, lakukan pendaftaran
+            terlebih dahulu melalui menu <b>Daftar</b>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="col">
+      <div class="card h-100 text-center">
+        <div class="card-body">
+          <div class="fs-1 mb-2">🔐</div>
+          <h6 class="fw-bold">Login</h6>
+          <p class="text-muted small mb-0">
+            Masuk ke aplikasi menggunakan
+            <b>username</b> dan <b>password</b>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="col">
+      <div class="card h-100 text-center">
+        <div class="card-body">
+          <div class="fs-1 mb-2">📚</div>
+          <h6 class="fw-bold">Pilih Buku</h6>
+          <p class="text-muted small mb-0">
+            Pilih buku yang tersedia pada halaman beranda
+            dengan menekan kartu buku.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="col">
+      <div class="card h-100 text-center">
+        <div class="card-body">
+          <div class="fs-1 mb-2">📝</div>
+          <h6 class="fw-bold">Isi Peminjaman</h6>
+          <p class="text-muted small mb-0">
+            Lengkapi data peminjaman seperti
+            nama peminjam dan tanggal pinjam.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 5 -->
+    <div class="col">
+      <div class="card h-100 text-center">
+        <div class="card-body">
+          <div class="fs-1 mb-2">💾</div>
+          <h6 class="fw-bold">Simpan Transaksi</h6>
+          <p class="text-muted small mb-0">
+            Data peminjaman akan tersimpan otomatis
+            ke menu transaksi.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 6 -->
+    <div class="col">
+      <div class="card h-100 text-center">
+        <div class="card-body">
+          <div class="fs-1 mb-2">📅</div>
+          <h6 class="fw-bold">Cek Riwayat</h6>
+          <p class="text-muted small mb-0">
+            Lihat riwayat peminjaman buku
+            hari ini maupun hari sebelumnya.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- JS -->
+<script>
+function pilihBuku(judul, penulis, kategori){
+  localStorage.setItem("judulBuku", judul);
+  localStorage.setItem("penulisBuku", penulis);
+  localStorage.setItem("kategoriBuku", kategori);
+  window.location.href = "pinjam.html";
+}
+</script>
+
+<!-- BOOTSTRAP OFFLINE JS -->
+<script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Login Perpustakaan</title>
+
+<!-- BOOTSTRAP OFFLINE -->
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+
+<style>
+body{
+  background:#f4efe9;
+  font-family: Segoe UI, sans-serif;
+}
+.card{
+  border-radius:18px;
+}
+.btn-main{
+  background:#6f4e37;
+  color:#fff;
+  border-radius:12px;
+}
+.btn-main:hover{
+  background:#5c402f;
+  color:#fff;
+}
+.link-text{
+  color:#6f4e37;
+  text-decoration:none;
+  font-size:14px;
+}
+.link-text:hover{
+  text-decoration:underline;
+}
+</style>
+</head>
+
+<body class="d-flex align-items-center vh-100">
+
+<div class="container">
+  <div class="card p-4 shadow">
+
+    <h4 class="fw-bold text-center mb-3">Perpustakaan Digital</h4>
+
+    <!-- LOGIN -->
+    <input type="text" id="username" class="form-control mb-3" placeholder="Username">
+    <input type="password" id="password" class="form-control mb-3" placeholder="Password">
+
+    <button id="btnLogin" class="btn btn-main w-100 mb-3">
+      Masuk
+    </button>
+
+    <!-- PESAN ERROR -->
+    <div id="errorMsg" class="alert alert-danger d-none" role="alert">
+      Username atau password salah!
+    </div>
+
+    <div class="text-center">
+      <span class="text-muted">Belum punya akun?</span><br>
+      <a href="daftar.html" class="link-text fw-semibold">Daftar di sini</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- JAVASCRIPT -->
+<script>
+document.getElementById("btnLogin").addEventListener("click", function () {
+  const username = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
+
+  // USER & PASSWORD CONTOH
+  const userBenar = "admin";
+  const passBenar = "12345";
+
+  if (username === userBenar && password === passBenar) {
+    // simpan status login
+    localStorage.setItem("login", "true");
+
+    // masuk ke beranda
+    window.location.href = "beranda.html";
+  } else {
+    // tampilkan peringatan
+    document.getElementById("errorMsg").classList.remove("d-none");
+  }
+});
+</script>
+
+<!-- BOOTSTRAP OFFLINE JS -->
+<script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
